@@ -70,7 +70,7 @@ void power()
 void menu()
 {
 	//Printing the menu
-	printf("1. add\n2. subtract\n3. multiply\n4. divide\n5. power\n\n");
+	printf("1. add\n2. subtract\n3. multiply\n4. divide\n5. power\n6. exit\n\n");
 
 	char c = getchar();
 	switch (c)
@@ -90,12 +90,15 @@ void menu()
 	case '5':
 		power();
 		break;
+	case '6':
+		exit();
+		break;
 
 		//If input is not between 1 nad 5
 	default:
 		printf("Invalid operation!\n\n");
 		menu();
-		break;
+		
 	}
 	
 	call_menu();
