@@ -1,126 +1,106 @@
 #include <stdio.h>
-#include <ctype.h>
-#include <string.h>
-#include <stdlib.h>
 
-#define MAXWORD 100
-
-struct tnode *addtree(struct tnode *, char *);
-void treeprint(struct tnode *);
-int getword(char *, int);
-struct tnode *talloc(void);
-char *strdup(char *);
-
-struct tnode
+struct word
 {
-	char* word;
+	char word[100];
 	int count;
-	struct tnode* left;
-	struct tnode* right;
 };
 
-struct tnode *addtree(struct tnode *p, char *w)
+struct word* words[1];
+
+void separate(char* text, struct word* words)
 {
-	int cond;
-	if (p == NULL)
-	{
-		p = talloc();
-		p->word = strdup(w);
-		p->count = 1;
-		p->left = p->right = NULL;
-	}
+	int i = 0;
+	int j = 0;
+	int l = 0;
+	int m = 0;
 
-	else if ((cond = strcmp(w, p->word)) == 0)
-	{
-		p->count++;
-	}
+	char wordtmp[100];
 
-	else if (cond < 0)
+	while (*(text + i) != '\0')
 	{
-		p->left = addtree(p->left, w);
-	}
+		j = 0;
 
-	else
-	{
-		p->right = addtree(p->right, w);
-	}
-
-	return p;
-}
-
-void treeprint(struct tnode *p)
-{
-	if (p != NULL)
-	{
-		treeprint(p->left);
-		printf("%4d %s\n", p->count, p->word);
-		treeprint(p->right);
-	}
-}
-
-int getword(char* word, int lim)
-{
-	int c, getch(void);
-	void ungetch(int);
-	char* w = word;
-
-	while (isspace(c = getch()))
-		;
-	if (c != EOF)
-	{
-		*w++ = c;
-	}
-	if (!isalpha(c))
-	{
-		*w++ = '\0';
-		return c;
-	}
-
-	for (; --lim > 0; w++)
-	{
-		if (!isalnum(*w = getch()))
+		while ((*(text + i) >= 'a' && *(text + i) <= 'z') || (*(text + i) >= 'A' && *(text + i) <= 'Z'))
 		{
-			ungetch(*w);
-			break;
+			*(wordtmp + j) = *(text + i);
+			*(wordtmp + j + 1) = '\0';
+			i++;
+			j++;
+		}
+
+		m = 0;
+ 		
+ 			while (strcmp(words[m].word, wordtmp) != 0 && m < l)
+			{
+				m++;
+			}
+
+  			if (strcmp(words[m].word, wordtmp) == 0)
+			{
+				words[m].count++;
+				i++;
+			}
+
+		else
+		{
+			words[l].count = 1;
+			strcpy_s(words[l].word, j + 1, wordtmp);
+			i++;
+			l++;
 		}
 	}
-	*w = '\0';
-	return word[0];
 }
 
-struct tnode *talloc(void)
+void enterText(char* text)
 {
-	return (struct tnode *) malloc(sizeof(struct tnode));
-}
-
-char *strdup(char* s)
-{
-	char *p;
-	p = (char *)malloc(strlen(s) + 1);
-	if (p != NULL)
+	printf("Enter your text: ");
+	char c;
+	int i = 0;
+	while ((c = getchar()) != EOF)
 	{
-		strcpy(p, s);
+		*(text + i) = c;
+		i++;
+	}
+	*(text + i)  = '\0';
+}
+
+void sortWords(struct word* words)
+{
+	int size = 0;
+	while (words[size].count > 0)
+	{
+		size++;
 	}
 
-	return p;
-}
+	struct word temp;
 
+	for (int i = 0; i < size; i++)
+	{
+		for (int j = i; j < size; j++)
+		{
+			if (words[i].count < words[j].count)
+			{
+				temp = words[i];
+				words[i] = words[j];
+				words[j] = temp;
+			}
+		}
+	}
+
+	int i = 0;
+	while (words[i].count > 0)
+	{
+		printf("%d - %s\n", words[i].count, words[i].word);
+		i++;
+	}
+}
 
 main()
 {
-	struct tnode *root;
-	char word[MAXWORD];
+	char text[200];
 
-	root = NULL;
-
-	while (getword(word, MAXWORD) != EOF)
-	{
-		if (isalpha(word[0]))
-		{
-			root = addtree(root, word);
-		}
-	}
-	
-	treeprint(root);
-	return 0;
+	enterText(text);
+	separate(text, words);
+	sortWords(words);
 }
