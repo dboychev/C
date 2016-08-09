@@ -7,12 +7,12 @@ struct node
 	struct node* next;
 };
 
-void Push(struct node* head, int newData)
+void Push(struct node** head, int newData)
 {
-	struct node* newNode = malloc(sizeof(head));
+	struct node* newNode = malloc(sizeof(struct node));
 	newNode->data = newData;
-	newNode->next = head;
-	head = newNode;
+	newNode->next = *head;
+	*head = newNode;
 }
 
 main()
