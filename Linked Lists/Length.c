@@ -8,10 +8,11 @@ struct node
 
 int Length(struct node* head)
 {
-	int len = 1;
-	while (head->next != NULL)
+	int len = 0;
+	struct node* temp = head;
+	while (temp != NULL)
 	{
-		head->next = head->next->next;
+		temp = temp->next;
 		len++;
 	}
 
@@ -20,18 +21,18 @@ int Length(struct node* head)
 
 main()
 {
-	struct node first;
-	struct node second;
-	struct node third;
-	struct node fourth;
-	first.data = 1;
-	first.next = &second;
-	second.data = 5;
-	second.next = &third;
-	third.data = 10;
-	third.next = &fourth;
-	fourth.data = first.data + second.data;
-	fourth.next = NULL;
+	struct node* first = malloc(sizeof(struct node));
+	struct node* second = malloc(sizeof(struct node));
+	struct node* third = malloc(sizeof(struct node));
+	struct node* fourth = malloc(sizeof(struct node));
+	first->data = 1;
+	first->next = second;
+	second->data = 5;
+	second->next = third;
+	third->data = 10;
+	third->next = fourth;
+	fourth->data = first->data + second->data;
+	fourth->next = NULL;
 	
-	printf("%d\n", Length(&first));
+	printf("%d\n", Length(first));
 }
