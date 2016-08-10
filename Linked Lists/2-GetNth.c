@@ -10,12 +10,24 @@ int GetNth(struct node* head, int index)
 {
 	struct node* temp = head;
 	int i = 0;
-	while (i < index)
+
+	if (index < 0) //Checking if index is too small
+	{
+		printf("Invalid input!\n");
+		return -1;
+	}
+	
+	while (i < index && temp->next != NULL)
 	{
 		temp = temp->next;
 		i++;
 	}
 
+	if (i < index) //Checking if index is too big
+	{
+		printf("Invalid input!\n");
+		return -1;
+	}
 	return (temp->data);
 }
 
@@ -38,5 +50,5 @@ main()
 	fifth->data = 4;
 	fifth->next = NULL;
 
-	printf("%d\n", GetNth(first, 0));
+	printf("%d\n", GetNth(first, 4));
 }
