@@ -21,11 +21,13 @@ main()
 	fifth->data = 5;
 	fifth->next = NULL;
 
-	printf("%d\n", Count(first, 2));
+	struct node* head = &first;
 
-	printf("%d\n", GetNth(first, 4));
+	printf("%d\n", Count(head, 2));
 
-	DeleteList(first);
+	printf("%d\n", GetNth(head, 4));
 
-	printf("%d\n", Pop(first));
+	//DeleteList(head);
+
+	printf("%d\n", Pop(head));
 }
