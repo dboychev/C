@@ -9,26 +9,19 @@ struct node
 void DeleteList(struct node* head)
 {
 	struct node* temp = head;
- 	struct node* prev = temp;
-   	
- 	while (temp->next != NULL) //Changing 'temp' until it points to the last node
-	{		
+	struct node* prev = temp;
+
+	while (temp->next != NULL) //Changing 'temp' until it points to the last node
+	{
 		prev = temp;
 		temp = temp->next;
 	}
- 	prev->next = NULL; //Breaking the connection between the two final nodes
+	prev->next = NULL; //Breaking the connection between the two final nodes
 
-	if (temp != prev) //Checking if 'temp' points to the head node - IF NOT
+	free(temp);
+	if (temp != head)
 	{
-		free(temp);
-		temp = NULL;
 		DeleteList(head);
-	}
-
-	else //If 'temp' points to the head node - end of recursion
-	{
-		free(temp);
-		temp = NULL;
 	}
 }
 
