@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include "LinkedList.h"
 
-int Count(struct node** head, int number)
+int Count(struct node* head, int number)
 {
 	int count = 0;
-	struct node* temp = *head;
+	struct node* temp = head;
 
 	while (temp != NULL)
 	{
@@ -20,9 +20,9 @@ int Count(struct node** head, int number)
 	return count;
 }
 
-int GetNth(struct node** head, int index)
+int GetNth(struct node* head, int index)
 {
-	struct node* temp = *head;
+	struct node* temp = head;
 	int i = 0;
 
 	if (index < 0) //Checking if index is too small
@@ -50,7 +50,7 @@ void DeleteList(struct node** head)
 	struct node* temp = *head;
 	struct node* prev = temp;
 
-   	while (temp->next != NULL) //Changing 'temp' until it points to the last node
+	while (temp->next != NULL) //Changing 'temp' until it points to the last node
 	{
 		prev = temp;
 		temp = temp->next;
@@ -66,7 +66,53 @@ void DeleteList(struct node** head)
 
 int Pop(struct node** head)
 {
-	struct node save = **head;
+	int hData = (*head)->data;
+	struct node* newNode = NULL;
+
+	if (head == NULL)
+	{
+		return -1;
+	}
+
+	newNode = (*head)->next;
 	free(*head);
-	return save.data;
+	return hData;
+}
+
+void InsertNth(struct node** headRef, int index, int data)
+{
+	struct node* temp = *headRef;
+	int i = 0;
+
+	while (i < index)
+	{
+		if (temp->next != NULL) //A test for the case if 'newNode' has to be the last node
+		{
+			temp = temp->next;
+		}
+		i++;
+	}
+
+	struct node* newNode = malloc(sizeof(struct node));
+	newNode->data = data;
+
+	if (index == 0) //If 'newNode' has to be the first element in the list
+	{
+		newNode->next = temp;
+		*headRef = newNode; //'newNode' is the new head element
+	}
+	
+	else 
+	{
+		if (temp->next != NULL) //If 'newNode' is not the new last element of the list
+		{
+			newNode->next = temp->next->next;
+		}
+
+		else //If 'newNode' is the new last element of the list
+		{
+			newNode->next = temp->next;
+		}
+		temp->next = newNode;
+	}
 }

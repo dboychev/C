@@ -23,11 +23,13 @@ main()
 
 	struct node* head = &first;
 
-	printf("%d\n", Count(head, 2));
+	printf("%d\n", Count(first, 1));
 
-	printf("%d\n", GetNth(head, 4));
+	printf("%d\n", GetNth(first, 4));
 
 	//DeleteList(head);
 
 	printf("%d\n", Pop(head));
+
+	InsertNth(&first, 8, 55);
 }
