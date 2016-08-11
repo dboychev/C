@@ -18,4 +18,9 @@ int Pop(struct node** head);
 
 void InsertNth(struct node** headRef, int index, int data);
 
+void swap(struct node* a, struct node* b);
+void SortedInsert(struct node** headRef, struct node* newNode);
+
+void InsertSort(struct node** headRef);
+
 #endif

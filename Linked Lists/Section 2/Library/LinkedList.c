@@ -84,6 +84,11 @@ void InsertNth(struct node** headRef, int index, int data)
 	struct node* temp = *headRef;
 	int i = 0;
 
+	if (index < 0)
+	{
+		printf("Invalid index value!\n");
+		return;
+	}
 	while (i < index)
 	{
 		if (temp->next != NULL) //A test for the case if 'newNode' has to be the last node
@@ -147,4 +152,16 @@ void SortedInsert(struct node** headRef, struct node* newNode)
 	}
 
 	InsertNth(headRef, index, newNode->data);
+}
+
+void InsertSort(struct node** headRef)
+{
+	struct node* temp = *headRef;
+	SortedInsert(headRef, temp); //Sorting and adding the head element to the already sorted list
+	
+	//Pop(headRef); //Removing the first element in the list that was just added
+	
+	temp = *headRef; //Changing 'temp' to the head element again
+	*headRef = temp->next; //'headRef' now points to the second element
+	free(temp); //Clearing the first element
 }

@@ -33,8 +33,10 @@ main()
 
 	//InsertNth(head, 3, 55);
 
-	struct node* new = malloc(sizeof(struct node));
+	/*struct node* new = malloc(sizeof(struct node));
 	new->data = 4;
 	new->next = NULL;
-	SortedInsert(head, new);
+	SortedInsert(head, new);*/
+
+	InsertSort(head);
 }
