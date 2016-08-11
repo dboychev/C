@@ -104,15 +104,47 @@ void InsertNth(struct node** headRef, int index, int data)
 	
 	else 
 	{
-		if (temp->next != NULL) //If 'newNode' is not the new last element of the list
-		{
-			newNode->next = temp->next->next;
-		}
-
-		else //If 'newNode' is the new last element of the list
-		{
-			newNode->next = temp->next;
-		}
+		newNode->next = temp->next;
 		temp->next = newNode;
 	}
+}
+
+void swap(struct node* a, struct node* b)
+{
+	int temp = a->data;
+	a->data = b->data;
+	b->data = temp;
+}
+
+void SortedInsert(struct node** headRef, struct node* newNode)
+{
+	struct node* ptr1 = *headRef; //Creating two pointers for easy swapping
+	struct node* ptr2 = ptr1->next;
+
+	while (ptr1 != NULL) 
+	{
+		while (ptr2 != NULL)
+		{
+			if (ptr1->data > ptr2->data)
+			{
+				swap(ptr1, ptr2);
+			}
+			ptr2 = ptr2->next;
+		}
+		ptr1 = ptr1->next;
+ 		if (ptr2 == NULL && ptr1 != NULL)
+		{
+ 			ptr2 = ptr1->next;
+		}
+	}
+
+	int index = 0;
+	ptr1 = *headRef; //Using 'ptr1' again, this time for finding the correct place for the new node
+	while (ptr1->data < newNode->data)
+	{
+		ptr1 = ptr1->next;
+		index++;
+	}
+
+	InsertNth(headRef, index, newNode->data);
 }

@@ -10,26 +10,31 @@ main()
 	struct node* fourth = malloc(sizeof(struct node));
 	struct node* fifth = malloc(sizeof(struct node));
 
-	first->data = 1;
+	first->data = 2;
 	first->next = second;
-	second->data = 2;
+	second->data = 1;
 	second->next = third;
-	third->data = 3;
+	third->data = 5;
 	third->next = fourth;
 	fourth->data = 4;
 	fourth->next = fifth;
-	fifth->data = 5;
+	fifth->data = 3;
 	fifth->next = NULL;
 
 	struct node* head = &first;
 
-	printf("%d\n", Count(first, 1));
+	//printf("%d\n", Count(first, 1));
 
-	printf("%d\n", GetNth(first, 4));
+	//printf("%d\n", GetNth(first, 4));
 
 	//DeleteList(head);
 
-	printf("%d\n", Pop(head));
+	//printf("%d\n", Pop(head));
 
-	InsertNth(&first, 8, 55);
+	//InsertNth(head, 3, 55);
+
+	struct node* new = malloc(sizeof(struct node));
+	new->data = 4;
+	new->next = NULL;
+	SortedInsert(head, new);
 }
