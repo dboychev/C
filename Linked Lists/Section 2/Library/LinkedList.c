@@ -165,3 +165,37 @@ void InsertSort(struct node** headRef)
 	*headRef = temp->next; //'headRef' now points to the second element
 	free(temp); //Clearing the first element
 }
+
+void Append(struct node** aRef, struct node** bRef)
+{
+  	struct node* aPtr = *aRef;
+	struct node* bPtr = *bRef;
+
+	if (aPtr != NULL) //Checking if list 'a' is empty
+	{
+		while (aPtr->next != NULL) 
+		{
+			aPtr = aPtr->next;
+		}
+	}
+	
+	while (bPtr != NULL)
+	{
+		struct node* new = malloc(sizeof(struct node)); //Adding elements of 'b' list to 'a' 1 by 1
+		new->data = bPtr->data;
+		new->next = NULL;
+		if (aPtr == NULL) //If 'a' is empty
+		{
+			aPtr = new;
+			bPtr = bPtr->next;
+		}
+		else
+		{
+			aPtr->next = new;
+			bPtr = bPtr->next;
+			aPtr = aPtr->next;
+		}
+	}
+
+	free(*bRef); //Clearing list 'b' 
+}

@@ -38,5 +38,14 @@ main()
 	new->next = NULL;
 	SortedInsert(head, new);*/
 
-	InsertSort(head);
+	//InsertSort(head);
+
+	struct node* Bfirst = malloc(sizeof(struct node));
+	struct node* Bsecond = malloc(sizeof(struct node));
+	Bfirst->data = 20;
+	Bfirst->next = Bsecond;
+	Bsecond->data = 21;
+	Bsecond->next = NULL;
+	struct node* a = NULL; //Test for an empty list
+	Append(&fourth, &Bfirst);
 }

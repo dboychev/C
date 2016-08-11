@@ -23,4 +23,6 @@ void SortedInsert(struct node** headRef, struct node* newNode);
 
 void InsertSort(struct node** headRef);
 
+void Append(struct node** aRef, struct node** bRef);
+
 #endif
