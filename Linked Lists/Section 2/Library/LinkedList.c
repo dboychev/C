@@ -199,3 +199,30 @@ void Append(struct node** aRef, struct node** bRef)
 
 	free(*bRef); //Clearing list 'b' 
 }
+
+void FrontBackSplit(struct node* source, struct node** frontRef, struct node** backRef)
+{
+	struct node* temp = source;
+	if (temp == NULL) //A test if the list is empty
+	{
+		printf("Error!!! Source list is empty!\n");
+		return;
+	}
+
+	int len = 0; //A variable for the length of the list
+	while (temp != NULL)
+	{
+ 		temp = temp->next;
+		len++;
+	}
+	temp = source;
+
+  	*frontRef = source;
+	for (int i = 0; i < len / 2 + len % 2 - 1; i++)
+	{
+		temp = temp->next;
+	}
+
+	*backRef = temp->next; //That is the first element after the half of the list - goes to the 'back'
+	temp->next = NULL; //Cutting the connection between the 'front' and the nodes that should not be in it
+}

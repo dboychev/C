@@ -25,4 +25,6 @@ void InsertSort(struct node** headRef);
 
 void Append(struct node** aRef, struct node** bRef);
 
+void FrontBackSplit(struct node* source, struct node** frontRef, struct node** backRef);
+
 #endif

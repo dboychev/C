@@ -10,15 +10,15 @@ main()
 	struct node* fourth = malloc(sizeof(struct node));
 	struct node* fifth = malloc(sizeof(struct node));
 
-	first->data = 2;
+	first->data = 1;
 	first->next = second;
-	second->data = 1;
+	second->data = 2;
 	second->next = third;
-	third->data = 5;
+	third->data = 3;
 	third->next = fourth;
 	fourth->data = 4;
 	fourth->next = fifth;
-	fifth->data = 3;
+	fifth->data = 5;
 	fifth->next = NULL;
 
 	struct node* head = &first;
@@ -40,12 +40,16 @@ main()
 
 	//InsertSort(head);
 
-	struct node* Bfirst = malloc(sizeof(struct node));
+	/*struct node* Bfirst = malloc(sizeof(struct node));
 	struct node* Bsecond = malloc(sizeof(struct node));
 	Bfirst->data = 20;
 	Bfirst->next = Bsecond;
 	Bsecond->data = 21;
 	Bsecond->next = NULL;
 	struct node* a = NULL; //Test for an empty list
-	Append(&fourth, &Bfirst);
+	Append(&fourth, &Bfirst);*/
+
+	struct node* front = NULL;
+	struct node* back = NULL; 
+	FrontBackSplit(*(&second), &front, &back);
 }
