@@ -368,7 +368,7 @@ void ShuffleMerge(struct node* a, struct node* b)
 
 struct node* SortedMerge(struct node* a, struct node* b)
 {
-	struct node* head = malloc(sizeof(struct node)); 
+	struct node* head = malloc(sizeof(struct node));
 	struct node* headSAVE = head; //'headSAVE' - used for pointing the head node of the list
 
 	while (a != NULL && b != NULL) //If both lists are not empty
@@ -399,5 +399,47 @@ struct node* SortedMerge(struct node* a, struct node* b)
 	}
 
 	headSAVE = headSAVE->next; //Making headSAVE to point to the first real node
+	return headSAVE;
+}
+
+struct node* SortedIntersect(struct node* a, struct node* b)
+{
+	struct node* head = malloc(sizeof(struct node));
+	struct node* headSAVE = head;
+	struct node* new = malloc(sizeof(struct node));
+	struct node* aTemp = a;
+	struct node* bTemp = b;
+	int count = 0;
+
+	while (aTemp != NULL)
+	{
+		while (bTemp != NULL)
+		{
+			if (aTemp->data == bTemp->data)
+			{
+				if (count > 0)
+				{
+					struct node* new = malloc(sizeof(struct node));
+					new->data = aTemp->data;
+					new->next = NULL;
+					head->next = new;
+					head = head->next;
+				}
+
+				else
+				{
+					head->data = aTemp->data;
+				}
+
+				count++;
+			}
+
+			bTemp = bTemp->next;
+		}
+
+		aTemp = aTemp->next;
+		bTemp = b;
+	}
+	
 	return headSAVE;
 }
