@@ -365,3 +365,39 @@ void ShuffleMerge(struct node* a, struct node* b)
 		head = headSAVE; //Making 'head' point to the first node of the new list 
 	}
 }
+
+struct node* SortedMerge(struct node* a, struct node* b)
+{
+	struct node* head = malloc(sizeof(struct node)); 
+	struct node* headSAVE = head; //'headSAVE' - used for pointing the head node of the list
+
+	while (a != NULL && b != NULL) //If both lists are not empty
+	{
+		if (a->data <= b->data) //Comparing the next 'a' node vs the next 'b' node
+		{
+ 			head->next = a;
+			a = a->next;
+		}
+
+		else
+		{
+			head->next = b;
+			b = b->next;
+		}
+
+		head = head->next;
+	} //If that 'while' ends, it means at least one of the lists is empty 
+
+	if (a != NULL) //If 'a' still has any nodes left
+	{
+		head->next = a; //Connecting the nodes left to the final node of the new list
+	}
+
+	if (b != NULL) //If 'b' still has any nodes left
+	{
+		head->next = b; //Connecting the nodes left to the final node of the new list
+	}
+
+	headSAVE = headSAVE->next; //Making headSAVE to point to the first real node
+	return headSAVE;
+}

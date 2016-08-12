@@ -86,7 +86,6 @@ main()
 	Bfirst->next = Bsecond;
 	Bsecond->data = 21;
 	Bsecond->next = NULL;
-
 	struct node* third = malloc(sizeof(struct node));
 	struct node* fourth = malloc(sizeof(struct node));
 	struct node* fifth = malloc(sizeof(struct node));
@@ -96,6 +95,28 @@ main()
 	fourth->next = fifth;
 	fifth->data = 5;
 	fifth->next = NULL;
-	
 	ShuffleMerge(Bfirst, third);*/
+
+	struct node* first = malloc(sizeof(struct node));
+	struct node* second = malloc(sizeof(struct node));
+	struct node* third = malloc(sizeof(struct node));
+	struct node* fourth = malloc(sizeof(struct node));
+	struct node* fifth = malloc(sizeof(struct node));
+	first->data = 1;
+	first->next = second;
+	second->data = 1;
+	second->next = third;
+	third->data = 3;
+	third->next = fourth;
+	fourth->data = 3;
+	fourth->next = fifth;
+	fifth->data = 5;
+	fifth->next = NULL;
+	struct node* Bfirst = malloc(sizeof(struct node));
+	struct node* Bsecond = malloc(sizeof(struct node));
+	Bfirst->data = 2;
+	Bfirst->next = Bsecond;
+	Bsecond->data = 4;
+	Bsecond->next = NULL;
+	SortedMerge(first, Bfirst);
 }

@@ -35,4 +35,6 @@ void AlternatingSplit(struct node* source, struct node** aRef, struct node**bRef
 
 void ShuffleMerge(struct node* a, struct node* b);
 
+struct node* SortedMerge(struct node* a, struct node* b);
+
 #endif
