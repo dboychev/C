@@ -286,3 +286,13 @@ void RemoveDuplicates(struct node* head)
 		}
 	}
 }
+
+void MoveNode(struct node** destRef, struct node** sourceRef)
+{
+	struct node* dTemp = *destRef;
+	struct node* sTemp = *sourceRef;
+
+	*sourceRef = (*sourceRef)->next;
+	sTemp->next = dTemp;
+	*destRef = sTemp;
+}

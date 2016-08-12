@@ -53,5 +53,13 @@ main()
 	struct node* back = NULL; 
 	FrontBackSplit(*(&second), &front, &back);*/
 
-	RemoveDuplicates(first);
+	//RemoveDuplicates(first);
+	
+	struct node* Bfirst = malloc(sizeof(struct node));
+	struct node* Bsecond = malloc(sizeof(struct node));
+	Bfirst->data = 20;
+	Bfirst->next = Bsecond;
+	Bsecond->data = 21;
+	Bsecond->next = NULL;
+	MoveNode(&third, &Bfirst);
 }
