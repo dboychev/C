@@ -4,7 +4,7 @@
 
 main()
 {
-	struct node* first = malloc(sizeof(struct node));
+	/*struct node* first = malloc(sizeof(struct node));
 	struct node* second = malloc(sizeof(struct node));
 	struct node* third = malloc(sizeof(struct node));
 	struct node* fourth = malloc(sizeof(struct node));
@@ -21,26 +21,34 @@ main()
 	fifth->data = 5;
 	fifth->next = NULL;
 
-	struct node* head = &first;
+	struct node* head = &first;*/
 
-	//printf("%d\n", Count(first, 1));
+	/*-----> TEST COUNT <-----
+	printf("%d\n", Count(first, 1));*/
 
-	//printf("%d\n", GetNth(first, 4));
+	/*-----> TEST GETNTH <-----
+	printf("%d\n", GetNth(first, 4));*/
 
-	//DeleteList(head);
+	/*-----> TEST DELETELIST <-----
+	DeleteList(head);*/
 
-	//printf("%d\n", Pop(head));
+	/*-----> TEST POP <-----
+	printf("%d\n", Pop(head));*/
 
-	//InsertNth(head, 3, 55);
+	/*-----> TEST INSERTNTH <-----
+	InsertNth(head, 3, 55);*/
 
-	/*struct node* new = malloc(sizeof(struct node));
+	/*-----> TEST SORTEDINSERT <-----
+	struct node* new = malloc(sizeof(struct node));
 	new->data = 4;
 	new->next = NULL;
 	SortedInsert(head, new);*/
 
-	//InsertSort(head);
+	/*-----> TEST INSERTSORT
+	InsertSort(head);*/
 
-	/*struct node* Bfirst = malloc(sizeof(struct node));
+	/*-----> TEST APPEND <-----
+	struct node* Bfirst = malloc(sizeof(struct node));
 	struct node* Bsecond = malloc(sizeof(struct node));
 	Bfirst->data = 20;
 	Bfirst->next = Bsecond;
@@ -49,13 +57,16 @@ main()
 	struct node* a = NULL; //Test for an empty list
 	Append(&fourth, &Bfirst);*/
 
-	/*struct node* front = NULL;
+	/*-----> FRONTBACKSPLIT <-----
+	struct node* front = NULL;
 	struct node* back = NULL; 
 	FrontBackSplit(*(&second), &front, &back);*/
 
-	//RemoveDuplicates(first);
-	
-	/*struct node* Bfirst = malloc(sizeof(struct node));
+	/*-----> TEST REMOVEDUPLICATES <-----
+	RemoveDuplicates(first);*/
+
+	/*-----> TEST MOVENODE <-----
+	struct node* Bfirst = malloc(sizeof(struct node));
 	struct node* Bsecond = malloc(sizeof(struct node));
 	Bfirst->data = 20;
 	Bfirst->next = Bsecond;
@@ -63,7 +74,28 @@ main()
 	Bsecond->next = NULL;
 	MoveNode(&third, &Bfirst);*/
 
+	/*-----> TEST ALTERNATINGSPLIT <-----
 	struct node* aList = NULL;
 	struct node* bList = NULL;
-	AlternatingSplit(fifth, &aList, &bList);
+	AlternatingSplit(fifth, &aList, &bList);*/
+
+	/*-----> TEST SHUFFLEMERGE <-----
+	struct node* Bfirst = malloc(sizeof(struct node));
+	struct node* Bsecond = malloc(sizeof(struct node));
+	Bfirst->data = 20;
+	Bfirst->next = Bsecond;
+	Bsecond->data = 21;
+	Bsecond->next = NULL;
+
+	struct node* third = malloc(sizeof(struct node));
+	struct node* fourth = malloc(sizeof(struct node));
+	struct node* fifth = malloc(sizeof(struct node));
+	third->data = 3;
+	third->next = fourth;
+	fourth->data = 4;
+	fourth->next = fifth;
+	fifth->data = 5;
+	fifth->next = NULL;
+	
+	ShuffleMerge(Bfirst, third);*/
 }

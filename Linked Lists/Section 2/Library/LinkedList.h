@@ -33,4 +33,6 @@ void MoveNode(struct node** destRef, struct node** sourceRef);
 
 void AlternatingSplit(struct node* source, struct node** aRef, struct node**bRef);
 
+void ShuffleMerge(struct node* a, struct node* b);
+
 #endif

@@ -314,3 +314,54 @@ void AlternatingSplit(struct node* source, struct node** aRef, struct node** bRe
 		bTemp = bTemp->next;
 	}
 }
+
+void ShuffleMerge(struct node* a, struct node* b)
+{
+	struct node* head = malloc(sizeof(struct node));
+	struct node* aTemp = a;
+	struct node* bTemp = b;
+	struct node* headSAVE = malloc(sizeof(struct node));
+
+	if (a == NULL) //If 'a' list is empty
+	{
+		head = b;
+	}
+
+	else if (b == NULL) //If 'b' list is empty
+	{
+		head = a;
+	}
+
+	else //If both 'a' and 'b' list have nodes
+	{
+		head = a; //The new list starts with the head element of 'a' list
+		headSAVE = head; //'headSAVE' - here will be save the head element of the new list
+		aTemp = a->next; //'aTemp' - helping to get to the next element of the 'a' list
+
+		head->next = b; //Connecting the elements of 'a' and 'b' one by one
+ 		head = head->next; 
+		bTemp = bTemp->next; //'bTemp' - helping to get to the next element of the 'b' list
+
+		while (aTemp != NULL && bTemp != NULL) //While both lists have any nodes left
+		{
+			head->next = aTemp; 
+			aTemp = aTemp->next;
+			head = head->next; 
+			head->next = bTemp;
+			bTemp = bTemp->next;
+			head = head->next;
+		} //When the 'while' stops it means at least one of the lists has no more nodes left
+
+		if (aTemp != NULL) //If 'b' has no more nodes, but 'a' is still not empty
+		{
+			head->next = aTemp; //Connecting the nodes left in 'a' list to the last node of the new list
+		}
+
+		if (bTemp != NULL) //If 'a' has no more nodes, but 'b' is still not empty
+		{
+			head->next = bTemp; //Connecting the nodes left in 'b' list to the last node of the new list
+		}
+
+		head = headSAVE; //Making 'head' point to the first node of the new list 
+	}
+}
