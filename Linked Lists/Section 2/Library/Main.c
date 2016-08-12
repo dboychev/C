@@ -10,15 +10,15 @@ main()
 	struct node* fourth = malloc(sizeof(struct node));
 	struct node* fifth = malloc(sizeof(struct node));
 
-	first->data = 1;
+	first->data = 2;
 	first->next = second;
-	second->data = 2;
+	second->data = 4;
 	second->next = third;
 	third->data = 3;
 	third->next = fourth;
 	fourth->data = 4;
 	fourth->next = fifth;
-	fifth->data = 5;
+	fifth->data = 2;
 	fifth->next = NULL;
 
 	struct node* head = &first;
@@ -49,7 +49,9 @@ main()
 	struct node* a = NULL; //Test for an empty list
 	Append(&fourth, &Bfirst);*/
 
-	struct node* front = NULL;
+	/*struct node* front = NULL;
 	struct node* back = NULL; 
-	FrontBackSplit(*(&second), &front, &back);
+	FrontBackSplit(*(&second), &front, &back);*/
+
+	RemoveDuplicates(first);
 }

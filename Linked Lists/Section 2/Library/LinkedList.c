@@ -226,3 +226,63 @@ void FrontBackSplit(struct node* source, struct node** frontRef, struct node** b
 	*backRef = temp->next; //That is the first element after the half of the list - goes to the 'back'
 	temp->next = NULL; //Cutting the connection between the 'front' and the nodes that should not be in it
 }
+
+void RemoveDuplicates(struct node* head)
+{
+	struct node* left = head;
+	struct node* right = left->next;
+	struct node* temp = head;
+	struct node* temp2 = head;
+
+	while (left != NULL)
+	{
+		while (right != NULL)
+		{
+			if (left->data == right->data) //If same elements found
+			{
+				temp = right;
+				temp2 = left;
+				while (temp2->next != right)
+				{
+					temp2 = temp2->next;
+				}
+				right = right->next;
+				temp2->next = right;
+				free(temp); 
+			}
+			else
+			{
+				right = right->next;
+			}
+		}
+		left = left->next;
+		if (left != NULL)
+		{
+			right = left->next;
+		}
+	}
+
+	//InsertSort(&head);
+
+	left = head;
+	right = left->next;
+
+	while (left != NULL) //Sorting
+	{
+		while (right != NULL)
+		{
+			if (left->data > right->data)
+			{
+				swap(left, right);
+			}
+
+			right = right->next;
+		}
+
+		left = left->next;
+		if (left != NULL && right == NULL)
+		{
+			right = left->next;
+		}
+	}
+}

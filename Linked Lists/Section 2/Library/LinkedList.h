@@ -27,4 +27,6 @@ void Append(struct node** aRef, struct node** bRef);
 
 void FrontBackSplit(struct node* source, struct node** frontRef, struct node** backRef);
 
+void RemoveDuplicates(struct node* head);
+
 #endif
