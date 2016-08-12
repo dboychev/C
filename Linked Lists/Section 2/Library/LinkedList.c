@@ -296,3 +296,21 @@ void MoveNode(struct node** destRef, struct node** sourceRef)
 	sTemp->next = dTemp;
 	*destRef = sTemp;
 }
+
+void AlternatingSplit(struct node* source, struct node** aRef, struct node** bRef)
+{
+	struct node* aTemp = source;
+	struct node* bTemp = source->next;
+
+	*aRef = source; //'aRef' points to the first element of the list
+	*bRef = source->next; //'bRef' points to the second element of the list
+
+	while (aTemp != NULL && bTemp != NULL)
+	{
+		aTemp->next = bTemp->next; //Skipping one element in the A list
+		aTemp = aTemp->next;
+	
+		bTemp->next = aTemp->next; //Skipping one element in the B list
+		bTemp = bTemp->next;
+	}
+}

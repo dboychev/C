@@ -31,4 +31,6 @@ void RemoveDuplicates(struct node* head);
 
 void MoveNode(struct node** destRef, struct node** sourceRef);
 
+void AlternatingSplit(struct node* source, struct node** aRef, struct node**bRef);
+
 #endif
