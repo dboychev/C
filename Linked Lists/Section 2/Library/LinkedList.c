@@ -445,6 +445,7 @@ struct node* SortedIntersect(struct node* a, struct node* b)
 	
 	return headSAVE;
 }
+<<<<<<< HEAD
 
 void Reverse(struct node** HeadRef)
 {
@@ -464,3 +465,5 @@ void Reverse(struct node** HeadRef)
 		}
 	}
 }
+=======
+>>>>>>> origin/master
