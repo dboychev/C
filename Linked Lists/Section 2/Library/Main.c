@@ -85,4 +85,6 @@ main()
 
 	/*-----> TEST REVERSE <-----
 	Reverse(&first);*/
+
+	RecursiveReverse(&first);
 }

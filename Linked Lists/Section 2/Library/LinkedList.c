@@ -445,19 +445,18 @@ struct node* SortedIntersect(struct node* a, struct node* b)
 	
 	return headSAVE;
 }
-<<<<<<< HEAD
 
-void Reverse(struct node** HeadRef)
+void Reverse(struct node** headRef)
 {
-	struct node* head = *HeadRef; //'head' - always pointing to the head node at the beginning
+	struct node* head = *headRef; //'head' - always pointing to the head node at the beginning
 	struct node* sec = head->next; //'ses' - pointing to the next node after 'head'
 	struct node* next = sec->next; //'next' - pointing to the next node after 'sec'
 	
 	while (sec != NULL)
 	{
 		head->next = next; //Changing the next of 'head' by skipping one node
-		sec->next = *HeadRef; //Making 'sec''s next node point to the new head node
-		*HeadRef = sec; //Making the new head node point to the new head node
+		sec->next = *headRef; //Making 'sec''s next node point to the new head node
+		*headRef = sec; //Making the new head node point to the new head node
 		sec = head->next; //Making 'sec' point to the head node at the beginning
 		if (sec != NULL)
 		{
@@ -465,5 +464,24 @@ void Reverse(struct node** HeadRef)
 		}
 	}
 }
-=======
->>>>>>> origin/master
+
+void RecursiveReverse(struct node** headRef)
+{
+	if (*headRef == NULL) //Checking if the list is empty
+	{
+		return;
+	}
+
+	struct node* head = *headRef;
+	struct node* sec = head->next;
+
+	if (sec == NULL) //Checking if the list has only one node
+	{
+		return;
+	}
+	
+	RecursiveReverse(&sec); //Recursive calling of the function
+	head->next->next = head; //Connecting the nodes to the head (now the final) node
+	head->next = NULL; //Breaking the head (now the final) node's connection with any following nodes
+	*headRef = sec; //Making 'headRef' point to the new head node of the list
+}
