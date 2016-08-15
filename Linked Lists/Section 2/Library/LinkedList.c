@@ -405,9 +405,9 @@ struct node* SortedMerge(struct node* a, struct node* b)
 struct node* SortedIntersect(struct node* a, struct node* b)
 {
 	struct node* head = malloc(sizeof(struct node));
-	struct node* headSAVE = head;
+	struct node* headSAVE = head; //'headSAVE' - pointing to the head element of head
 	struct node* new = malloc(sizeof(struct node));
-	struct node* aTemp = a;
+	struct node* aTemp = a; 
 	struct node* bTemp = b;
 	int count = 0;
 
@@ -415,18 +415,17 @@ struct node* SortedIntersect(struct node* a, struct node* b)
 	{
 		while (bTemp != NULL)
 		{
-			if (aTemp->data == bTemp->data)
+			if (aTemp->data == bTemp->data) //If there are equal elements
 			{
-				if (count > 0)
+				if (count > 0) //Saving each node after the first one
 				{
-					struct node* new = malloc(sizeof(struct node));
 					new->data = aTemp->data;
 					new->next = NULL;
 					head->next = new;
 					head = head->next;
 				}
 
-				else
+				else //For the head node
 				{
 					head->data = aTemp->data;
 				}
@@ -438,8 +437,30 @@ struct node* SortedIntersect(struct node* a, struct node* b)
 		}
 
 		aTemp = aTemp->next;
-		bTemp = b;
+		if (aTemp != NULL)
+		{
+			bTemp = b;
+		}
 	}
 	
 	return headSAVE;
+}
+
+void Reverse(struct node** HeadRef)
+{
+	struct node* head = *HeadRef; //'head' - always pointing to the head node at the beginning
+	struct node* sec = head->next; //'ses' - pointing to the next node after 'head'
+	struct node* next = sec->next; //'next' - pointing to the next node after 'sec'
+	
+	while (sec != NULL)
+	{
+		head->next = next; //Changing the next of 'head' by skipping one node
+		sec->next = *HeadRef; //Making 'sec''s next node point to the new head node
+		*HeadRef = sec; //Making the new head node point to the new head node
+		sec = head->next; //Making 'sec' point to the head node at the beginning
+		if (sec != NULL)
+		{
+			next = sec->next; //Making 'next' point to the node after 'sec'
+		}
+	}
 }

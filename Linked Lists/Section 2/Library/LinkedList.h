@@ -39,4 +39,6 @@ struct node* SortedMerge(struct node* a, struct node* b);
 
 struct node* SortedIntersect(struct node* a, struct node* b);
 
+void Reverse(struct node** HeadRef);
+
 #endif
